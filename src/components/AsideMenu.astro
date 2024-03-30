@@ -5,7 +5,7 @@ import SearchIcon from "@/icons/Search.astro";
 import SideMenuItem from "./SideMenuItem.astro";
 
 import { playlists } from "@/lib/data";
-import SideMenuCard from "./SideMenuCard.astro";
+import { SideMenuCard } from "./SideMenuCard";
 ---
 
 <nav class="flex flex-col flex-1 gap-2">
@@ -29,7 +29,11 @@ import SideMenuCard from "./SideMenuCard.astro";
         Your Libary
       </SideMenuItem>
 
-      {playlists.map((playlist) => <SideMenuCard playlist={playlist} />)}
+      {
+        playlists.map((playlist) => (
+          <SideMenuCard playlist={playlist} client:visible />
+        ))
+      }
     </ul>
   </div>
 </nav>
