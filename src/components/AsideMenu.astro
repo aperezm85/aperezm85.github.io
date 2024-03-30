@@ -4,7 +4,7 @@ import HomeIcon from "@/icons/Home.astro";
 import SearchIcon from "@/icons/Search.astro";
 import SideMenuItem from "./SideMenuItem.astro";
 
-import { playlists } from "@/lib/data";
+import { playlists, type Playlist } from "@/lib/data";
 import { SideMenuCard } from "./SideMenuCard";
 ---
 
@@ -30,7 +30,7 @@ import { SideMenuCard } from "./SideMenuCard";
       </SideMenuItem>
 
       {
-        playlists.map((playlist) => (
+        playlists.map((playlist: Playlist) => (
           <SideMenuCard playlist={playlist} client:visible />
         ))
       }
