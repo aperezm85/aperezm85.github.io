@@ -1,6 +1,7 @@
 # Spotify clone Astro
 
 Astro course from [midudev](https://midu.dev/) where we are creating a Spotify clone
+
 Youtube course https://youtu.be/WRc8lz-bp78?si=wAvnuKgM9zKdZgJT
 
 NOTE:
