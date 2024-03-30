@@ -91,7 +91,7 @@ export function Player() {
             </button>
           </div>
           <SongControl audio={audioRef} />
-          <audio ref={audioRef} onEnded={nextSong} />
+          <audio ref={audioRef} onEnded={handleNextSong} />
         </div>
       </div>
       <div className="grid place-content-center">
