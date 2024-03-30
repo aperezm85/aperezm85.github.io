@@ -68,10 +68,11 @@ const CurrentSong = ({ image, title, artists }) => {
         overflow-hidden
       `}
     >
-      <picture className="w-16 h-16 bg-zinc-800 rounded-md shadow-lg overflow-hidden">
-        <img src={image} alt={title} />
-      </picture>
-
+      {(title || image) && (
+        <picture className="w-16 h-16 bg-zinc-800 rounded-md shadow-lg overflow-hidden">
+          <img src={image} alt={title} />
+        </picture>
+      )}
       <div className="flex flex-col">
         <h3 className="font-semibold text-sm block">{title}</h3>
         <span className="text-xs opacity-80">{artists?.join(", ")}</span>
@@ -168,9 +169,8 @@ const SongControl = ({ audio }) => {
 };
 
 export function Player() {
-  const { isPlaying, setIsPlaying, currentMusic, volume } = usePlayerStore(
-    (state) => state
-  );
+  const { isPlaying, setIsPlaying, currentMusic, volume, setCurrentMusic } =
+    usePlayerStore((state) => state);
   const audioRef = useRef();
 
   useEffect(() => {
@@ -195,6 +195,21 @@ export function Player() {
     setIsPlaying(!isPlaying);
   };
 
+  const nextSong = () => {
+    const { song, songs } = currentMusic;
+
+    const currentSongIndex = songs.findIndex((s) => s.id === song.id);
+    if (currentSongIndex !== -1 && currentSongIndex + 1 < songs.length) {
+      const nextSong = songs[currentSongIndex + 1];
+      setCurrentMusic({
+        ...currentMusic,
+        song: nextSong,
+      });
+    } else {
+      setIsPlaying(false);
+    }
+  };
+
   return (
     <div className="flex flex-row justify-between w-full px-1 z-50">
       <div className="w-[200px]">
@@ -207,7 +222,7 @@ export function Player() {
             {isPlaying ? <Pause /> : <Play />}
           </button>
           <SongControl audio={audioRef} />
-          <audio ref={audioRef} />
+          <audio ref={audioRef} onEnded={nextSong} />
         </div>
       </div>
       <div className="grid place-content-center">
