@@ -55,3 +55,53 @@ export const Volume = ({ className = "" }: { className?: string }) => (
     <path d="M11.5 13.614a5.752 5.752 0 0 0 0-11.228v1.55a4.252 4.252 0 0 1 0 8.127v1.55z"></path>
   </svg>
 );
+
+export const NextSong = ({ className = "" }) => (
+  <svg width="20" height="20" viewBox="0 0 24 24" className={className}>
+    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+    <g
+      id="SVGRepo_tracerCarrier"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></g>
+    <g id="SVGRepo_iconCarrier">
+      <g
+        id="Page-1"
+        stroke="none"
+        strokeWidth="1"
+        fill="none"
+        fillRule="evenodd"
+      >
+        <g id="Next">
+          <rect
+            id="Rectangle"
+            fillRule="nonzero"
+            x="0"
+            y="0"
+            width="24"
+            height="24"
+          ></rect>
+          <path
+            d="M15.3371,12.4218 L5.76844,18.511 C5.43558,18.7228 5,18.4837 5,18.0892 L5,5.91084 C5,5.51629 5.43558,5.27718 5.76844,5.48901 L15.3371,11.5782 C15.6459,11.7746 15.6459,12.2254 15.3371,12.4218 Z"
+            id="Path"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            fill="currentColor"
+          ></path>
+          <line
+            x1="19"
+            y1="5"
+            x2="19"
+            y2="19"
+            id="Path"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            fill="currentColor"
+          ></line>
+        </g>
+      </g>
+    </g>
+  </svg>
+);

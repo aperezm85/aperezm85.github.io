@@ -1,6 +1,6 @@
 import type { Playlist } from "@/lib/data";
 import { usePlayerStore } from "@/store/playerStore";
-import { Volume } from "./Player";
+import { Volume } from "./PlayerIcons";
 
 interface SideMenuCardProps {
   playlist: Playlist;

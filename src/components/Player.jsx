@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { CurrentSong } from "./CurrentSong";
 import { VolumeControl } from "./VolumeControl";
 import { SongControl } from "./SongControl";
-import { Pause, Play } from "./PlayerIcons";
+import { NextSong, Pause, Play } from "./PlayerIcons";
 
 export function Player() {
   const { isPlaying, setIsPlaying, currentMusic, volume, setCurrentMusic } =
@@ -32,7 +32,7 @@ export function Player() {
     setIsPlaying(!isPlaying);
   };
 
-  const nextSong = () => {
+  const handleNextSong = () => {
     const { song, songs } = currentMusic;
 
     const currentSongIndex = songs.findIndex((s) => s.id === song.id);
@@ -47,6 +47,21 @@ export function Player() {
     }
   };
 
+  const handlePrevSong = () => {
+    const { song, songs } = currentMusic;
+
+    const currentSongIndex = songs.findIndex((s) => s.id === song.id);
+    if (currentSongIndex !== -1 && currentSongIndex - 1 > -1) {
+      const prevSong = songs[currentSongIndex - 1];
+      setCurrentMusic({
+        ...currentMusic,
+        song: prevSong,
+      });
+    } else {
+      setIsPlaying(false);
+    }
+  };
+
   return (
     <div className="flex flex-row justify-between w-full px-1 z-50">
       <div className="w-[200px]">
@@ -55,9 +70,26 @@ export function Player() {
 
       <div className="grid place-content-center gap-4 flex-1">
         <div className="flex justify-center flex-col items-center">
-          <button className="bg-white rounded-full p-2" onClick={handleClick}>
-            {isPlaying ? <Pause /> : <Play />}
-          </button>
+          <div className="flex justify-center flex-row items-center gap-2">
+            <button
+              className="rounded-full p-2 text-gray-300 hover:text-gray-600"
+              onClick={handlePrevSong}
+            >
+              <NextSong className="rotate-180" />
+            </button>
+            <button
+              className="bg-white rounded-full p-2 hover:bg-gray-300 hover:text-gray-600"
+              onClick={handleClick}
+            >
+              {isPlaying ? <Pause /> : <Play />}
+            </button>
+            <button
+              className="rounded-full p-2 text-gray-300 hover:text-gray-600"
+              onClick={handleNextSong}
+            >
+              <NextSong />
+            </button>
+          </div>
           <SongControl audio={audioRef} />
           <audio ref={audioRef} onEnded={nextSong} />
         </div>
